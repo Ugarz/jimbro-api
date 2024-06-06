@@ -1,3 +1,1 @@
-class MockSessionRepository {
-  // Implement methods
-}
+class MockSessionRepository {}

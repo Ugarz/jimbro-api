@@ -14,10 +14,10 @@ export class Workout {
   description: string;
 
   @Column()
-  duration: number; // duration in minutes
+  duration: number;
 
   @Column()
-  difficulty: string; // e.g., 'beginner', 'intermediate', 'advanced'
+  difficulty: string;
 
   @OneToMany(() => Exercise, (exercise) => exercise.workout)
   exercises: Exercise[];

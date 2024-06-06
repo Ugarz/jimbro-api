@@ -10,7 +10,7 @@ export class Set {
   repetitions: number;
 
   @Column()
-  weight: number; // weight in kg
+  weight: number;
 
   @ManyToOne(() => Exercise, (exercise) => exercise.sets)
   exercise: Exercise;

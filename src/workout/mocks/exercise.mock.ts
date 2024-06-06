@@ -1,4 +1,1 @@
-class MockExerciseRepository {
-  // Implement methods
-}
-
+class MockExerciseRepository {}

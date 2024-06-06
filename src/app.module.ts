@@ -10,13 +10,13 @@ import { Session } from './workout/entities/session.entity';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost', // 'postgres' si vous exécutez à partir de Docker compose
+      host: 'localhost',
       port: 5432,
       username: 'myuser',
       password: 'mypassword',
       database: 'mydb',
       entities: [Workout, Exercise, Set, Session],
-      synchronize: true, // Ne pas utiliser en production - cela peut causer la perte de données
+      synchronize: true,
     }),
     WorkoutModule,
   ],

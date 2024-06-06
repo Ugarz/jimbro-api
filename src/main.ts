@@ -5,7 +5,6 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // Configuration de Swagger
   const config = new DocumentBuilder()
     .setTitle('Workout API')
     .setDescription('API documentation for the workout application')

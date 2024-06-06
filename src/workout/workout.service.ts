@@ -71,10 +71,6 @@ export class WorkoutService {
     return this.sessionRepository.save(session);
   }
 
-  async update(id: number, workoutData: any): Promise<void> {
-    // Mise à jour d'un workout avec logique similaire à la création
-  }
-
   async remove(id: number): Promise<void> {
     await this.workoutRepository.delete(id);
   }

@@ -1,5 +1,1 @@
-class MockSetRepository {
-  // Implement methods
-}
-
-
+class MockSetRepository {}
