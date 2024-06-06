@@ -1,0 +1,3 @@
+class MockSessionRepository {
+  // Implement methods
+}

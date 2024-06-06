@@ -1,0 +1,4 @@
+class MockExerciseRepository {
+  // Implement methods
+}
+
