@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { WorkoutModule } from './workout/workout.module';
-import { Workout } from './workout/entities/workout.entity';
-import { Exercise } from './workout/entities/exercise.entity';
-import { Set } from './workout/entities/set.entity';
-import { Session } from './workout/entities/session.entity';
+import { WorkoutEntity } from './workout/entities/workout.entity';
+import { ExerciseEntity } from './workout/entities/exercise.entity';
+import { SetEntity } from './workout/entities/set.entity';
+import { SessionEntity } from './workout/entities/session.entity';
 
 @Module({
   imports: [
@@ -15,7 +15,7 @@ import { Session } from './workout/entities/session.entity';
       username: 'myuser',
       password: 'mypassword',
       database: 'mydb',
-      entities: [Workout, Exercise, Set, Session],
+      entities: [WorkoutEntity, ExerciseEntity, SetEntity, SessionEntity],
       synchronize: true,
     }),
     WorkoutModule,

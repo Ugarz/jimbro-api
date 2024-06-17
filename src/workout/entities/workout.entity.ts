@@ -1,9 +1,9 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
-import { Exercise } from './exercise.entity';
-import { Session } from './session.entity';
+import { ExerciseEntity } from './exercise.entity';
+import { SessionEntity } from './session.entity';
 
-@Entity()
-export class Workout {
+@Entity('workouts')
+export class WorkoutEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -19,9 +19,9 @@ export class Workout {
   @Column()
   difficulty: string;
 
-  @OneToMany(() => Exercise, (exercise) => exercise.workout)
-  exercises: Exercise[];
+  @OneToMany(() => ExerciseEntity, (exercise) => exercise.workout)
+  exercises: ExerciseEntity[];
 
-  @OneToMany(() => Session, (session) => session.workout)
-  instances: Session[];
+  @OneToMany(() => SessionEntity, (session) => session.workout)
+  instances: SessionEntity[];
 }

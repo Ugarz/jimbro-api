@@ -1,8 +1,8 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
-import { Exercise } from './exercise.entity';
+import { ExerciseEntity } from './exercise.entity';
 
-@Entity()
-export class Set {
+@Entity('sets')
+export class SetEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -12,6 +12,6 @@ export class Set {
   @Column()
   weight: number;
 
-  @ManyToOne(() => Exercise, (exercise) => exercise.sets)
-  exercise: Exercise;
+  @ManyToOne(() => ExerciseEntity, (exercise) => exercise.sets)
+  exercise: ExerciseEntity;
 }

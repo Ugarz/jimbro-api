@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 import { WorkoutService } from './workout.service';
 import { CreateWorkoutDto } from './dto/create-workout.dto';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
-import { Workout } from './entities/workout.entity';
+import { WorkoutEntity } from './entities/workout.entity';
 
 @ApiTags('workout')
 @Controller('workout')
@@ -14,9 +14,9 @@ export class WorkoutController {
   @ApiResponse({
     status: 200,
     description: 'Return all workouts',
-    type: [Workout],
+    type: [WorkoutEntity],
   })
-  findAll() {
+  getWorkouts() {
     return this.workoutService.findAll();
   }
 
@@ -25,7 +25,7 @@ export class WorkoutController {
   @ApiResponse({
     status: 200,
     description: 'Return the workout',
-    type: Workout,
+    type: WorkoutEntity,
   })
   @ApiResponse({ status: 404, description: 'Workout not found' })
   findOne(@Param('id') id: string) {
@@ -37,7 +37,7 @@ export class WorkoutController {
   @ApiResponse({
     status: 201,
     description: 'The workout has been successfully created.',
-    type: Workout,
+    type: WorkoutEntity,
   })
   @ApiResponse({ status: 400, description: 'Invalid input' })
   create(@Body() createWorkoutDto: CreateWorkoutDto) {

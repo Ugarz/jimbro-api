@@ -1,40 +1,40 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Workout } from './entities/workout.entity';
-import { Exercise } from './entities/exercise.entity';
-import { Set } from './entities/set.entity';
-import { Session } from './entities/session.entity';
+import { WorkoutEntity } from './entities/workout.entity';
+import { ExerciseEntity } from './entities/exercise.entity';
+import { SetEntity } from './entities/set.entity';
+import { SessionEntity } from './entities/session.entity';
 import { CreateWorkoutDto } from './dto/create-workout.dto';
 
 @Injectable()
 export class WorkoutService {
   constructor(
-    @InjectRepository(Workout)
-    private workoutRepository: Repository<Workout>,
-    @InjectRepository(Exercise)
-    private exerciseRepository: Repository<Exercise>,
-    @InjectRepository(Set)
-    private setRepository: Repository<Set>,
-    @InjectRepository(Session)
-    private sessionRepository: Repository<Session>,
+    @InjectRepository(WorkoutEntity)
+    private workoutRepository: Repository<WorkoutEntity>,
+    @InjectRepository(ExerciseEntity)
+    private exerciseRepository: Repository<ExerciseEntity>,
+    @InjectRepository(SetEntity)
+    private setRepository: Repository<SetEntity>,
+    @InjectRepository(SessionEntity)
+    private sessionRepository: Repository<SessionEntity>,
   ) {}
 
-  findAll(): Promise<Workout[]> {
+  findAll(): Promise<WorkoutEntity[]> {
     return this.workoutRepository.find({
       relations: ['exercises', 'exercises.sets'],
     });
   }
 
-  findOne(id: string): Promise<Workout> {
+  findOne(id: string): Promise<WorkoutEntity> {
     return this.workoutRepository.findOne({
       where: { id },
       relations: ['exercises', 'exercises.sets'],
     });
   }
 
-  async create(workoutData: CreateWorkoutDto): Promise<Workout> {
-    const workout = new Workout();
+  async create(workoutData: CreateWorkoutDto): Promise<WorkoutEntity> {
+    const workout = new WorkoutEntity();
     workout.name = workoutData.name;
     workout.description = workoutData.description;
     workout.duration = workoutData.duration;
@@ -43,14 +43,14 @@ export class WorkoutService {
     const createdWorkout = await this.workoutRepository.save(workout);
 
     for (const exerciseData of workoutData.exercises) {
-      const exercise = new Exercise();
+      const exercise = new ExerciseEntity();
       exercise.name = exerciseData.name;
       exercise.workout = createdWorkout;
 
       const createdExercise = await this.exerciseRepository.save(exercise);
 
       for (const setData of exerciseData.sets) {
-        const set = new Set();
+        const set = new SetEntity();
         set.repetitions = setData.repetitions;
         set.weight = setData.weight;
         set.exercise = createdExercise;
@@ -62,9 +62,9 @@ export class WorkoutService {
     return this.findOne(createdWorkout.id);
   }
 
-  async createInstance(workoutId: string): Promise<Session> {
+  async createInstance(workoutId: string): Promise<SessionEntity> {
     const workout = await this.findOne(workoutId);
-    const session = new Session();
+    const session = new SessionEntity();
     session.workout = workout;
     session.date = new Date();
 

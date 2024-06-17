@@ -1,13 +1,13 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
-import { Workout } from './workout.entity';
+import { WorkoutEntity } from './workout.entity';
 
-@Entity()
-export class Session {
+@Entity('sessions')
+export class SessionEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ManyToOne(() => Workout, (workout) => workout.instances)
-  workout: Workout;
+  @ManyToOne(() => WorkoutEntity, (workout) => workout.instances)
+  workout: WorkoutEntity;
 
   @Column()
   date: Date;

@@ -5,20 +5,20 @@ import {
   ManyToOne,
   OneToMany,
 } from 'typeorm';
-import { Workout } from './workout.entity';
-import { Set } from './set.entity';
+import { WorkoutEntity } from './workout.entity';
+import { SetEntity } from './set.entity';
 
-@Entity()
-export class Exercise {
+@Entity('exercises')
+export class ExerciseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
   name: string;
 
-  @ManyToOne(() => Workout, (workout) => workout.exercises)
-  workout: Workout;
+  @ManyToOne(() => WorkoutEntity, (workout) => workout.exercises)
+  workout: WorkoutEntity;
 
-  @OneToMany(() => Set, (set) => set.exercise)
-  sets: Set[];
+  @OneToMany(() => SetEntity, (set) => set.exercise)
+  sets: SetEntity[];
 }
